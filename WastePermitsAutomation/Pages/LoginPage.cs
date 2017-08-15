@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium.IE;
+﻿
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace WastePermitsAutomation
 {
@@ -12,7 +9,7 @@ namespace WastePermitsAutomation
     {
         public static void Goto()
         {
-            Driver.Instance.Navigate().GoToUrl("https://ea-lp-crm-dev.crm4.dynamics.com");
+            Driver.Instance.Navigate().GoToUrl(Driver.Baseaddress);
         }
 
         public static LoginCommand LoginAs(string userName)
@@ -27,7 +24,7 @@ namespace WastePermitsAutomation
         private string password;
 
         public LoginCommand(string userName)
-        {
+        {  
             this.userName = userName;
         }
 
@@ -49,7 +46,7 @@ namespace WastePermitsAutomation
            PasswordInput.SendKeys(password);
 
            var LoginButton = Driver.Instance.FindElement(By.Id("cred_sign_in_button"));
-            System.Threading.Thread.Sleep(5000);
+            Driver.Wait(TimeSpan.FromSeconds(2));
             LoginButton.Click();
 
 
