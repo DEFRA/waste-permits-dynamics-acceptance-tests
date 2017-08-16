@@ -49,7 +49,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pages\DashboardPage.cs" />
+    <Compile Include="NavBarMenu.cs" />
     <Compile Include="Selenium\Driver.cs" />
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\MainPage.cs" />

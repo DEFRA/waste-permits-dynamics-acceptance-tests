@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WastePermitsAutomation;
+using OpenQA.Selenium;
 
 namespace WastePermitsTests
 {
@@ -10,7 +11,8 @@ namespace WastePermitsTests
         [TestMethod]
         public void Permitting_Officer_Can_Login()
         {
-            //Assert.IsTrue(MainPage.IsAt, "Failed to login.");
+            Assert.AreEqual(true,Driver.Instance.FindElement(By.ClassName("navTabButtonUserInfoProfileImage")).Displayed);
+
         }
     }
 }
