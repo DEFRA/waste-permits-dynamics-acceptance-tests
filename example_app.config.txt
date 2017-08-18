@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<configuration>
+  <appSettings>
+    <add key="UserName" value="example@example.com"></add>
+    <add key="UserPassword" value="examplepassword"></add>
+  </appSettings>
+</configuration>
