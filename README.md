@@ -30,6 +30,9 @@ The test sections holds the acceptance tests in the the Tests folder.
 
 BaseTest.cs holds the before and after logic that runs for all tests (login, sign out and close browser)
 
+app.config is used to store usernames and passwords
+example_app.config is supplied in the code to give an example
+
 
 
 
