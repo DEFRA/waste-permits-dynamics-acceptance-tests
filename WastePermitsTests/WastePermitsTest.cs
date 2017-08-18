@@ -10,7 +10,7 @@ namespace WastePermitsTests
         {
             Driver.Initialize();
             LoginPage.Goto();
-            LoginPage.LoginAs("tim.stone@defradev.onmicrosoft.com").WithPassword("Helsink!1").Login();
+            LoginPage.LoginAs("tim.stone@defradev.onmicrosoft.com").WithPassword("XXXXXX").Login();
         }
 
         [TestCleanup]
