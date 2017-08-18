@@ -15,7 +15,6 @@ namespace WastePermitsTests
             LoginPage.Goto();
             LoginPage.LoginAs(username).WithPassword(userpassword).Login();
         }
-
         [TestCleanup]
         public void Cleanup()
         {
