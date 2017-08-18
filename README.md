@@ -22,7 +22,7 @@ Automation holds an abstraction of the systen under test (SUT), primarily:
 
 Page objects held in the Pages folder, holding methods to replicate the functionality of SUT.
 
-Driver class (driver.cs) help in the Selenium folder, holding driver specific configuration including the base address,
+Driver class (driver.cs) held in the Selenium folder, holding driver specific configuration including the base address,
 implicit wait timeout and startup/tear down methods.
 
 The test sections holds the acceptance tests in the the Tests folder.
