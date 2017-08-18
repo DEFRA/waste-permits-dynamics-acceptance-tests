@@ -3,14 +3,17 @@ using WastePermitsAutomation;
 
 namespace WastePermitsTests
 {
-    public class WastePermitsTest
+    public class BaseTest
     {
         [TestInitialize]
         public void Init()
         {
+            string username = System.Configuration.ConfigurationManager.AppSettings["UserName"];
+            string userpassword = System.Configuration.ConfigurationManager.AppSettings["UserPassword"];
+
             Driver.Initialize();
             LoginPage.Goto();
-            LoginPage.LoginAs("tim.stone@defradev.onmicrosoft.com").WithPassword("XXXXX").Login();
+            LoginPage.LoginAs(username).WithPassword(userpassword).Login();
         }
 
         [TestCleanup]

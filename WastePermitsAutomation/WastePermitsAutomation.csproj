@@ -49,10 +49,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NavBarMenu.cs" />
+    <Compile Include="Pages\NavBarMenu.cs" />
     <Compile Include="Selenium\Driver.cs" />
     <Compile Include="Pages\LoginPage.cs" />
-    <Compile Include="Pages\MainPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

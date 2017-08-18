@@ -6,7 +6,7 @@ using OpenQA.Selenium;
 namespace WastePermitsTests
 {
     [TestClass]
-    public class LoginTests : WastePermitsTest
+    public class LoginTests : BaseTest
     {
         [TestMethod]
         public void Permitting_Officer_Can_Login()

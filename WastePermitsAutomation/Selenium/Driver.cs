@@ -12,8 +12,7 @@ namespace WastePermitsAutomation
         public static void Initialize()
         {
             Instance = new FirefoxDriver ();
-            // Need to change to set implicit wait propertysetting
-            Instance.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            Instance.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
         }
 
         public static void Close()
