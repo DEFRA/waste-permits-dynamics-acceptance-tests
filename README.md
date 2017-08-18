@@ -4,6 +4,7 @@ C# and selenium based acceptance tests for the Waste permits digital service
 ## Pre-requisites
 
 This project is setup to run using Visual Studio 2017
+Needs firefox browser
 
 
 ## Installation
