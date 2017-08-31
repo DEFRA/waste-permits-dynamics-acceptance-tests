@@ -55,6 +55,7 @@
     <Compile Include="BaseTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="example_app.config" />
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>

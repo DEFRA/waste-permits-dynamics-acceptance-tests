@@ -8,7 +8,8 @@ namespace WastePermitsAutomation
     public class Driver
     {
         public static IWebDriver Instance { get; set; }
-        public static string Baseaddress => "https://ea-lp-crm-qa.crm4.dynamics.com";
+        public static string Baseaddress => System.Configuration.ConfigurationManager.AppSettings["BaseUrl"];
+
         public static void Initialize()
         {
             Instance = new FirefoxDriver ();
