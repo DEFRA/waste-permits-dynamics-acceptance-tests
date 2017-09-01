@@ -1,6 +1,9 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Chrome;
 using System;
+using System.Configuration;
 using System.Threading;
 
 namespace WastePermitsAutomation
@@ -9,10 +12,25 @@ namespace WastePermitsAutomation
     {
         public static IWebDriver Instance { get; set; }
         public static string Baseaddress => System.Configuration.ConfigurationManager.AppSettings["BaseUrl"];
+        public static string Browser = ConfigurationManager.AppSettings["browser"];
 
         public static void Initialize()
         {
-            Instance = new FirefoxDriver ();
+
+            switch (Browser)
+            {
+                case "Chrome":
+                    Instance = new ChromeDriver();
+                    break;
+                case "IE":
+                    Instance = new InternetExplorerDriver();
+                    break;
+                case "Firefox":
+                    Instance = new FirefoxDriver(); ;
+                    break;
+            }
+            Instance.Manage().Window.Maximize();
+            
             Instance.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
         }
 
