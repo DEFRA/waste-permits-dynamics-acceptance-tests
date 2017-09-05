@@ -16,11 +16,7 @@ namespace WastePermitsTests
             LoginPage.LoginAs(username).WithPassword(userpassword).Login();
         }
         [TestCleanup]
-        public void Cleanup()
-        {
-            NavBarMenu.Signout();
-            Driver.Close();
-        }
+        public void Cleanup() => Driver.Close();
 
     }
 }
