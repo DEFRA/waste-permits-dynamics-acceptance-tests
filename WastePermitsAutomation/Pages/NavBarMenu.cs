@@ -10,9 +10,8 @@ namespace WastePermitsAutomation
            var profileImage = Driver.Instance.FindElement(By.ClassName("navTabButtonUserInfoProfileImage"));
             profileImage.Click();
 
-            Driver.Wait(TimeSpan.FromSeconds(2));
-
-            var signOut = Driver.Instance.FindElement(By.Id("navTabButtonUserInfoSignOutId"));
+            Driver.Wait(TimeSpan.FromSeconds(10));
+            var signOut = Driver.Instance.FindElement(By.CssSelector("a[Title='Sign out']"));
             signOut.Click();
         }
     }

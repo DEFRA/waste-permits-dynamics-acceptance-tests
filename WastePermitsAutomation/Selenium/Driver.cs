@@ -1,6 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Chrome;
 using System;
 using System.Configuration;
@@ -9,17 +7,18 @@ using OpenQA.Selenium.Remote;
 
 namespace WastePermitsAutomation
 {
-    public class Driver
+    public static class Driver
     {
         public static IWebDriver Instance { get; set; }
-        public static string Baseaddress => System.Configuration.ConfigurationManager.AppSettings["BaseUrl"];
+        public static string BaseAddress => System.Configuration.ConfigurationManager.AppSettings["BaseAddress"];
         public static string Host = ConfigurationManager.AppSettings["Host"];
-        private static string BrowserName = ConfigurationManager.AppSettings["BrowserName"];
-        private static string BrowserVersion = ConfigurationManager.AppSettings["BrowserVersion"];
-        private static string Platform = ConfigurationManager.AppSettings["Platform"];
-        private static string BS_USER = ConfigurationManager.AppSettings["BS_USERNAME"];
-        private static string BS_KEY = ConfigurationManager.AppSettings["BS_ACCESS_KEY"];
-        private static string MASK_KEY_INPUT = ConfigurationManager.AppSettings["MASK_KEY_INPUT"];
+        private static string browserName = ConfigurationManager.AppSettings["browserName"];
+        private static string browserVersion = ConfigurationManager.AppSettings["browserVersion"];
+        private static string osVersion = ConfigurationManager.AppSettings["osVersion"];
+        private static string os = ConfigurationManager.AppSettings["os"];
+        private static string bsUser = ConfigurationManager.AppSettings["bsUser"];
+        private static string bsKey = ConfigurationManager.AppSettings["bsKey"];
+        private static string maskKeyInput = ConfigurationManager.AppSettings["maskKeyInput"];
 
         public static void Initialize()
         {
@@ -30,20 +29,23 @@ namespace WastePermitsAutomation
                     break;
                 case "Browserstack":
                     DesiredCapabilities caps = new DesiredCapabilities();
-                    caps.SetCapability(CapabilityType.BrowserName, BrowserName);
-                    caps.SetCapability(CapabilityType.Version, BrowserVersion);
-                    caps.SetCapability(CapabilityType.Platform, Platform);
-                    caps.SetCapability("browserstack.user", BS_USER);
-                    caps.SetCapability("browserstack.key", BS_KEY);
+                    caps.SetCapability(CapabilityType.BrowserName, browserName);
+                    caps.SetCapability(CapabilityType.Version, browserVersion);
+                    caps.SetCapability("os", os);
+                    caps.SetCapability("os_version", osVersion);
+                    caps.SetCapability("browserstack.user", bsUser);
+                    caps.SetCapability("browserstack.key", bsKey);
                     caps.SetCapability("build", "1");
                     caps.SetCapability("project", "Waste Permits");
-                    caps.SetCapability("browserstack.maskSendKeys", MASK_KEY_INPUT);
+                    caps.SetCapability("browserstack.maskSendKeys", maskKeyInput);
                     Instance = new RemoteWebDriver(new Uri("http://hub-cloud.browserstack.com/wd/hub/"), caps);
                     break;
             }
             Instance.Manage().Window.Maximize();
             
             Instance.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
+
+            Instance.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
         }
 
         public static void Close()
