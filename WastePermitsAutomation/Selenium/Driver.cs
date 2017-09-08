@@ -19,6 +19,8 @@ namespace WastePermitsAutomation
         private static string bsUser = ConfigurationManager.AppSettings["bsUser"];
         private static string bsKey = ConfigurationManager.AppSettings["bsKey"];
         private static string maskKeyInput = ConfigurationManager.AppSettings["maskKeyInput"];
+        private static string bsDebug = ConfigurationManager.AppSettings["bsDebug"];
+        private static string bsVideo = ConfigurationManager.AppSettings["bsVideo"];
 
         public static void Initialize()
         {
@@ -38,6 +40,8 @@ namespace WastePermitsAutomation
                     caps.SetCapability("build", "1");
                     caps.SetCapability("project", "Waste Permits");
                     caps.SetCapability("browserstack.maskSendKeys", maskKeyInput);
+                    caps.SetCapability("browserstack.debug", bsDebug);
+                    caps.SetCapability("browserstack.video", bsVideo);
                     Instance = new RemoteWebDriver(new Uri("http://hub-cloud.browserstack.com/wd/hub/"), caps);
                     break;
             }
