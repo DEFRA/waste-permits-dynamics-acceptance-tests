@@ -11,8 +11,8 @@ namespace WastePermitsTests
         [TestMethod]
         public void Permitting_Officer_Can_Login()
         {
-            Assert.AreEqual(true,Driver.Instance.FindElement(By.ClassName("navTabButtonUserInfoProfileImage")).Displayed);
-
+            //Assert.AreEqual(true,Driver.Instance.FindElement(By.ClassName("navTabButtonUserInfoProfileImage")).Displayed);
+            Assert.IsTrue(NavBarMenu.IsAt, "Failed to login.");
         }
     }
 }

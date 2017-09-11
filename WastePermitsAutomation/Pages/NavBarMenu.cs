@@ -6,6 +6,18 @@ namespace WastePermitsAutomation
 {
     public class NavBarMenu
     {
+        public static bool IsAt
+        {
+           get
+            {
+                var ProfileImageLocator = Driver.Instance.FindElement(By.ClassName("navTabButtonUserInfoProfileImage"));
+                if (ProfileImageLocator.Displayed is true)
+                return true;
+                else 
+                return false;
+            }
+         }
+
         public static void Signout()
         {
            var profileImage = Driver.Instance.FindElement(By.ClassName("navTabButtonUserInfoProfileImage"));
