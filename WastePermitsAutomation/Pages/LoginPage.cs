@@ -1,6 +1,5 @@
 ﻿
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using System;
 
 namespace WastePermitsAutomation
@@ -9,7 +8,7 @@ namespace WastePermitsAutomation
     {
         public static void Goto()
         {
-            Driver.Instance.Navigate().GoToUrl(Driver.Baseaddress);
+            Driver.Instance.Navigate().GoToUrl(Driver.BaseAddress);
         }
 
         public static LoginCommand LoginAs(string userName)

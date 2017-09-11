@@ -8,12 +8,12 @@ namespace WastePermitsTests
         [TestInitialize]
         public void Init()
         {
-            string username = System.Configuration.ConfigurationManager.AppSettings["UserName"];
-            string userpassword = System.Configuration.ConfigurationManager.AppSettings["UserPassword"];
+            string userName = System.Configuration.ConfigurationManager.AppSettings["userName"];
+            string userPassword = System.Configuration.ConfigurationManager.AppSettings["userPassword"];
 
             Driver.Initialize();
             LoginPage.Goto();
-            LoginPage.LoginAs(username).WithPassword(userpassword).Login();
+            LoginPage.LoginAs(userName).WithPassword(userPassword).Login();
         }
         [TestCleanup]
         public void Cleanup()
@@ -21,6 +21,5 @@ namespace WastePermitsTests
             NavBarMenu.Signout();
             Driver.Close();
         }
-
     }
 }
