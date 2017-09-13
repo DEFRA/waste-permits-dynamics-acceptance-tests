@@ -10,7 +10,7 @@ namespace WastePermitsAutomation
         {
            get
             {
-                var ProfileImageLocator = Driver.Instance.FindElement(By.ClassName("navTabButtonUserInfoProfileImage"));
+                var ProfileImageLocator = Driver.Instance.FindElement(By.Id("navTabButtonUserInfoLinkId"));
                 if (ProfileImageLocator.Displayed is true)
                 return true;
                 else 
@@ -20,7 +20,7 @@ namespace WastePermitsAutomation
 
         public static void Signout()
         {
-           var profileImage = Driver.Instance.FindElement(By.ClassName("navTabButtonUserInfoProfileImage"));
+           var profileImage = Driver.Instance.FindElement(By.Id("TabUserInfoId"));
             profileImage.Click();
             //Usual find element then click doesn't seem to work
             //Using advanced user actions API to move to element then click it

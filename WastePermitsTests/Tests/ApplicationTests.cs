@@ -5,12 +5,12 @@ using WastePermitsAutomation;
 namespace WastePermitsTests
 {
     [TestClass]
-    public class LoginTests : BaseTest
+    public class ApplicationTests : BaseTest
     {
         [TestMethod]
-        public void Permitting_Officer_Can_Login()
+        public void Permiting_officer_can_create_application()
         {
-            Assert.IsTrue(NavBarMenu.IsAt, "Failed to login.");
+            Dashboard.SelectDashboard("Waste Permitting Officer Dashboard");
         }
     }
 }
