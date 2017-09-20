@@ -10,7 +10,7 @@ namespace WastePermitsTests
         [TestMethod]
         public void Permiting_officer_can_create_application()
         {
-            Dashboard.SelectDashboard("Waste Permitting Officer Dashboard");
+            Dashboard.SelectDashboard();
         }
     }
 }
