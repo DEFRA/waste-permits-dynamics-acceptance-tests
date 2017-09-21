@@ -1,6 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using System;
 
 namespace WastePermitsAutomation
 {
@@ -26,6 +26,17 @@ namespace WastePermitsAutomation
             //Using advanced user actions API to move to element then click it
             var input = Driver.Instance.FindElement(By.CssSelector("a[Title='Sign out']"));
             new Actions(Driver.Instance).MoveToElement(input).Click().Perform();
+        }
+
+        public static void openApplications()
+        {
+            var lpSitemap = Driver.Instance.FindElement(By.Id("TabLP"));
+            lpSitemap.Click();
+            var applicationsMenu = Driver.Instance.FindElement(By.Id("LP_Applications"));
+            applicationsMenu.Click();
+            var applications = Driver.Instance.FindElement(By.CssSelector("a[Title='Applications']"));
+            applications.Click();
+
         }
     }
 }
