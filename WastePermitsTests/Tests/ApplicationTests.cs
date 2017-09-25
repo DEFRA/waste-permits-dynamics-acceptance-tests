@@ -19,6 +19,7 @@ namespace WastePermitsTests
             NavBarMenu.openApplications();
             Assert.IsTrue(ApplicationsPage.IsAt, "Failed to go to Applications page");
             ApplicationsPage.newApplication();
+            ApplicationsPage.completeApplication();
 
         }
     }
