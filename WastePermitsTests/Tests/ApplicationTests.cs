@@ -18,9 +18,12 @@ namespace WastePermitsTests
         {
             NavBarMenu.openApplications();
             Assert.IsTrue(ApplicationsPage.IsAt, "Failed to go to Applications page");
+            //Stores the number of applications for later checks on application being created
+            ApplicationsPage.StoreApplicationCount();
             ApplicationsPage.newApplication();
             ApplicationsPage.completeApplication();
-
+            NavBarMenu.openApplications();
+            Assert.AreEqual(ApplicationsPage.PreviousApplicationsCount + 1, ApplicationsPage.CurrentApplicationsCount, "Couldn't create application");
         }
     }
 }

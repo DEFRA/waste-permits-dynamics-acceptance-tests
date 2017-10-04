@@ -6,6 +6,18 @@ namespace WastePermitsAutomation
 {
     public class ApplicationsPage
     {
+        private static int lastCount;
+
+        public static int PreviousApplicationsCount
+        {
+            get { return lastCount; }
+        }
+
+        public static int CurrentApplicationsCount
+        {
+            get { return GetApplicationCount(); }
+        }
+
         public static bool IsAt
         {
             get
@@ -17,6 +29,9 @@ namespace WastePermitsAutomation
                     return false;
             }
         }
+
+        
+
         public static void newApplication()
         {
             var createApplication = Driver.Instance.FindElement(By.CssSelector("li[title$='Create a new Application record.']"));
@@ -30,8 +45,9 @@ namespace WastePermitsAutomation
 
             //Usual find element then click doesn't seem to work
             //Using advanced user actions API to move to element then click it then fill in the details
+            //https://github.com/SeleniumHQ/selenium/wiki/Advanced-User-Interactions
             var customerTitle = Driver.Instance.FindElement(By.Id("defra_name_i"));
-            new Actions(Driver.Instance).MoveToElement(customerTitle).Click().SendKeys("Mr").Perform();
+            new Actions(Driver.Instance).MoveToElement(customerTitle).Click().SendKeys("Application 1").Perform();
             var customerName = Driver.Instance.FindElement(By.Id("header_process_defra_customerid_lookupValue"));
             new Actions(Driver.Instance).MoveToElement(customerName).Click().SendKeys("Tim Stone").Perform();
             var primaryContact = Driver.Instance.FindElement(By.Id("header_process_defra_primarycontactid_lookupValue"));
@@ -43,6 +59,24 @@ namespace WastePermitsAutomation
             Driver.Instance.SwitchTo().DefaultContent();
             var saveApplication = Driver.Instance.FindElement(By.Id("defra_application|NoRelationship|Form|Mscrm.Form.defra_application.Save"));
             saveApplication.Click();
+        }
+
+        public static void StoreApplicationCount()
+        {
+            lastCount = GetApplicationCount();
+        }
+
+        private static int GetApplicationCount()
+        {
+            //Issue with reading row count as table is refreshed by Javascript
+            //http://www.seleniumhq.org/exceptions/stale_element_reference.jsp
+            Driver.Wait(TimeSpan.FromSeconds(5));
+            var activeApplications = Driver.Instance.FindElement(By.Id("contentIFrame0"));
+            Driver.Instance.SwitchTo().Frame(activeApplications);
+            var activeApplicationsTable = Driver.Instance.FindElement(By.Id("gridBodyTable"));
+            Driver.Instance.SwitchTo().DefaultContent();
+            return int.Parse(activeApplicationsTable.GetAttribute("totalrecordcount"));
+            
         }
     }
 }
