@@ -46,9 +46,10 @@ namespace WastePermitsAutomation
             //Usual find element then click doesn't seem to work
             //Using advanced user actions API to move to element then click it then fill in the details
             //https://github.com/SeleniumHQ/selenium/wiki/Advanced-User-Interactions
-            var customerTitle = Driver.Instance.FindElement(By.Id("defra_name_i"));
-            new Actions(Driver.Instance).MoveToElement(customerTitle).Click().SendKeys("Application 1").Perform();
-            var customerName = Driver.Instance.FindElement(By.Id("header_process_defra_customerid_lookupValue"));
+            //Title name ID seems to change every time page is rendered so using a css selector begins with defra_name_
+            var Title = Driver.Instance.FindElement(By.CssSelector("div[aria-describedby^='defra_name_']"));
+            new Actions(Driver.Instance).MoveToElement(Title).Click().SendKeys("Permit XX").Perform();
+            var customerName = Driver.Instance.FindElement(By.Id("header_process_defra_customerid"));
             new Actions(Driver.Instance).MoveToElement(customerName).Click().SendKeys("Tim Stone").Perform();
             var primaryContact = Driver.Instance.FindElement(By.Id("header_process_defra_primarycontactid_lookupValue"));
             new Actions(Driver.Instance).MoveToElement(primaryContact).Click().SendKeys("Tim Stone").Perform();
@@ -56,9 +57,11 @@ namespace WastePermitsAutomation
             new Actions(Driver.Instance).MoveToElement(agentName).Click().SendKeys("Tim Stone").Perform();
             var areaName = Driver.Instance.FindElement(By.Id("header_process_defra_areaid_lookupValue"));
             new Actions(Driver.Instance).MoveToElement(areaName).Click().SendKeys("Bristol").Perform();
-            Driver.Instance.SwitchTo().DefaultContent();
-            var saveApplication = Driver.Instance.FindElement(By.Id("defra_application|NoRelationship|Form|Mscrm.Form.defra_application.Save"));
+            var saveApplication = Driver.Instance.FindElement(By.CssSelector("img[Title='Save']"));
             saveApplication.Click();
+            //TODO check for saving complete before continuing
+            Driver.Wait(TimeSpan.FromSeconds(5));
+            Driver.Instance.SwitchTo().DefaultContent();
         }
 
         public static void StoreApplicationCount()
@@ -68,15 +71,13 @@ namespace WastePermitsAutomation
 
         private static int GetApplicationCount()
         {
-            //Issue with reading row count as table is refreshed by Javascript
-            //http://www.seleniumhq.org/exceptions/stale_element_reference.jsp
-            Driver.Wait(TimeSpan.FromSeconds(5));
             var activeApplications = Driver.Instance.FindElement(By.Id("contentIFrame0"));
             Driver.Instance.SwitchTo().Frame(activeApplications);
             var activeApplicationsTable = Driver.Instance.FindElement(By.Id("gridBodyTable"));
+            var recordCount = int.Parse(activeApplicationsTable.GetAttribute("totalrecordcount"));
             Driver.Instance.SwitchTo().DefaultContent();
-            return int.Parse(activeApplicationsTable.GetAttribute("totalrecordcount"));
-            
+            return recordCount;
+
         }
     }
 }

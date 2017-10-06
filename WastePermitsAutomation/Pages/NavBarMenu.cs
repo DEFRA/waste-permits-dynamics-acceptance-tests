@@ -34,9 +34,9 @@ namespace WastePermitsAutomation
             lpSitemap.Click();
             var applicationsMenu = Driver.Instance.FindElement(By.Id("LP_Applications"));
             applicationsMenu.Click();
-            var applications = Driver.Instance.FindElement(By.CssSelector("a[Title='Applications']"));
+            var applications = Driver.Instance.FindElement(By.Id("NewSubArea_6977dd"));
             applications.Click();
-
+            Driver.Wait(TimeSpan.FromSeconds(5));
         }
     }
 }

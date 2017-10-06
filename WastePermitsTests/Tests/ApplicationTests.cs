@@ -23,7 +23,7 @@ namespace WastePermitsTests
             ApplicationsPage.newApplication();
             ApplicationsPage.completeApplication();
             NavBarMenu.openApplications();
-            Assert.AreEqual(ApplicationsPage.PreviousApplicationsCount + 1, ApplicationsPage.CurrentApplicationsCount, "Couldn't create application");
+            Assert.AreEqual(ApplicationsPage.PreviousApplicationsCount +1, ApplicationsPage.CurrentApplicationsCount, "Couldn't create application");
         }
     }
 }
