@@ -18,6 +18,8 @@ namespace WastePermitsTests
         [TestCleanup]
         public void Cleanup()
         {
+            //Comes out of any iframe
+            Driver.Instance.SwitchTo().DefaultContent();
             NavBarMenu.Signout();
             Driver.Close();
         }
